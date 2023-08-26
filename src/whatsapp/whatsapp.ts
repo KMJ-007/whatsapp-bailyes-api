@@ -3,7 +3,7 @@ import { WASocket } from "@whiskeysockets/baileys";
 import {prisma, logger} from '../common'
 import { createSession } from "./sessionFunctions";
 
-type WhatsappSession = WASocket & {
+export type WhatsappSession = WASocket & {
     destroy: () => Promise<void>;
     store: Store;
 };

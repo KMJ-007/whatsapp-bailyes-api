@@ -1,9 +1,10 @@
 import makeWASocket, { Browsers, ConnectionState, DisconnectReason, SocketConfig, isJidBroadcast, makeCacheableSignalKeyStore } from "@whiskeysockets/baileys"
-import { Response } from "express"
-import { MAX_RECONNECT_RETRIES, SESSION_CONFIG_ID, SSEQRGenerations, SSE_MAX_QR_GENERATION, retries, whatsappSessions } from "./whatsapp";
+import { RequestHandler, Response } from "express"
+import { MAX_RECONNECT_RETRIES, SESSION_CONFIG_ID, SSEQRGenerations, SSE_MAX_QR_GENERATION, WhatsappSession, retries, whatsappSessions } from "./whatsapp";
 import { logger, prisma } from "../common";
 import { Store, useSession } from "@ookamiiixd/baileys-store";
 import { toDataURL } from "qrcode";
+
 
 type createSessionOption = {
     sessionId: string,
@@ -153,4 +154,46 @@ export const createSession = async(options:createSessionOption) => {
         update:{},
         where: { sessionId_id: {id: configID, sessionId}}
     })
+};
+
+export const sessionExist = (sessionId: string) => {
+    return whatsappSessions.has(sessionId);
+};
+
+export const getSessionStatus = (session: WhatsappSession) => {
+    const state = ['CONNECTING', 'CONNECTED', 'DISCONNECTING', 'DISCONNECTED'];
+    let status = state[(session.ws as any).readyState];
+    status = session.user ? 'AUTHENTICATED' : status;
+    return status;
+};
+
+export const listSessions = () => {
+    return Array.from(whatsappSessions.entries()).map(([id,session])=>({
+        id,
+        status: getSessionStatus(session)
+    }))
+};
+
+export const getSession = (sessionId: string) => {
+    return whatsappSessions.get(sessionId);
+};
+
+export const deleteSession = async(sessionId: string) => {
+    whatsappSessions.get(sessionId)?.destroy();
+};
+
+// pata lagau ki banda whatsapp par exist karta hai kya ?
+export const jidExist = async(session: WhatsappSession, jid: string, type: 'group' | 'number' = 'number') => {
+    try {
+        if (type === 'number') {
+            const [result] = await session.onWhatsApp(jid);
+            return !!result?.exists;
+          }
+      
+          const groupMeta = await session.groupMetadata(jid);
+          return !!groupMeta.id; 
+    } catch (error) {
+        return Promise.reject(error);
+    }
 }
+

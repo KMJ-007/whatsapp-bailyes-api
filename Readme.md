@@ -6,9 +6,14 @@
 
 - i am storing the session related info in the database, i can store them in local json file and use them, but for multi device it is not good, and consistent
 
+- some terms and concept which you will have question:
+    - SSE is for server sent events, in case want real time updates
+    - jid: The jid is the identifier used by whatsapp for each or group. It use to be cc+phone@s.whatsapp.net for users and cc+phone-timestamp@g.us for groups.
+    Some times it differs due to countries with area code. So, check your jid while registering in the returned string and check other users jid with contact info function or you will be banned.
+
 - todo:
 
-- [ ] Creating basic routes and making it live
-- [ ] storing the session of the existing user and using them
+- [x] Creating basic routes and making it live
+- [x] storing the session of the existing user and using them
 - [ ] dockerising whole service
 - [ ] setting up the ci/cd workflow to push it to docker hub
