@@ -110,6 +110,7 @@ export const createSession = async(options:createSessionOption) => {
         generateHighQualityLinkPreview: false,
         ...socketConfig,
         auth: {
+            // @ts-ignore
             creds: state.creds,
             // there is something called SignalKeyStore, ye function usko cache karta hai aur agar kuch error ya info ho to usko log karta hai 
             // https://www.youtube.com/watch?v=DXv1boalsDI
@@ -119,8 +120,9 @@ export const createSession = async(options:createSessionOption) => {
         // ignore if id brodcast
         shouldIgnoreJid: (jid) => isJidBroadcast(jid),
     })
-    console.log({socket}); 
+    // console.log({socket}); 
     // creating new store
+    // @ts-ignore
     const store = new Store(sessionId, socket.ev);
     
     // saving store for the user's session;
