@@ -1,15 +1,20 @@
 import { Request, Response } from "express";
-import { createSession } from "../wa";
+import { createSession, sessionExist } from "../wa";
 
 
 
 const sessionController = {
     
     add: async (req:Request, res:Response) => {
-            createSession({
-                sessionId: req.body.sessionId,
-                res,
-            });
+            // if session exist return 
+            if(sessionExist(req.body.sessionId)){
+                return res.status(200).json({ error: 'Session already exist!' });
+            }else{
+                createSession({
+                    sessionId: req.body.sessionId,
+                    res,
+                });
+            }
     }
 };
 
