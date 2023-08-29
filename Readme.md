@@ -20,3 +20,4 @@
 
 
 ## Running docker file
+ docker run --env-file .env  -p 3000:3000 wa-bailyes-1

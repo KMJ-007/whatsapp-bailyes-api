@@ -11,7 +11,7 @@
     "pm2": "pm2 start pm2.json --no-daemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "prisma":{
+  "prisma": {
     "schema": "src/prisma/schema.prisma"
   },
   "nodemonConfig": {
@@ -27,6 +27,7 @@
     "@prisma/client": "^5.2.0",
     "@whiskeysockets/baileys": "^6.4.1",
     "baileys-bottle": "^2.1.2",
+    "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "pm2": "^5.3.0",
     "qrcode": "^1.5.3",
