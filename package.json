@@ -2,9 +2,12 @@
   "name": "whatsapp-bailyes-microservice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "start": "node .",
+    "build": "tsc",
     "dev": "nodemon src/index.ts",
+    "pm2": "pm2 start pm2.json --no-daemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
@@ -21,6 +24,7 @@
     "@whiskeysockets/baileys": "^6.4.1",
     "baileys-bottle": "^2.1.2",
     "express-validator": "^7.0.1",
+    "pm2": "^5.3.0",
     "qrcode": "^1.5.3",
     "qrcode-terminal": "^0.12.0"
   },

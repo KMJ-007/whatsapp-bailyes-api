@@ -17,3 +17,6 @@
 - [x] storing the session of the existing user and using them
 - [ ] dockerising whole service
 - [ ] setting up the ci/cd workflow to push it to docker hub
+
+
+## Running docker file
