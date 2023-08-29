@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node .",
-    "build": "tsc",
+    "build": "etsc",
     "dev": "nodemon src/index.ts",
     "pm2": "pm2 start pm2.json --no-daemon",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,6 +32,8 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/qrcode": "^1.5.1",
+    "esbuild": "^0.19.2",
+    "esbuild-node-tsc": "^2.0.5",
     "prisma": "^4.16.1"
   }
 }
