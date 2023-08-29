@@ -1,31 +1,28 @@
 {
-  "name": "wa-multidevice",
+  "name": "whatsapp-bailyes-microservice",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engine": {
-    "node": ">=16.0.0"
+  "nodemonConfig": {
+    "ignore": [
+      "baileys_auth_info/*",
+      "baileys_store.json"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ookamiiixd/baileys-store": "^1.0.0-beta.0",
-    "@prisma/client": "^4.16.2",
-    "@whiskeysockets/baileys": "^6.4.0",
-    "body-parser": "^1.20.2",
-    "bun": "^0.8.0",
-    "concurrently": "^8.2.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "@prisma/client": "^5.2.0",
+    "@whiskeysockets/baileys": "^6.4.1",
+    "baileys-bottle": "^2.1.2",
     "express-validator": "^7.0.1",
-    "qrcode": "^1.5.3"
+    "qrcode": "^1.5.3",
+    "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

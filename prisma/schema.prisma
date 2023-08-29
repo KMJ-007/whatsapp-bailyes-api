@@ -10,8 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// session
-model session {
+
+model Session {
   pkId      Int    @id @default(autoincrement())
   sessionId String @db.VarChar(128)
   id        String @db.VarChar(255)

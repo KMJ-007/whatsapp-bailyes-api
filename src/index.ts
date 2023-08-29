@@ -1,20 +1,22 @@
-import cors from 'cors';
-import 'dotenv/config';
 import express from 'express';
-import { init } from './whatsapp/whatsapp';
-import router from './routes/router';
+import bodyParser from 'body-parser';
+import sessionRouter from './router/session';
+import { logger, prisma } from './shared';
+import messageRoutes from './router/message';
+import { init } from './wa';
+
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.use('/',router);
+
+app.use(bodyParser.json());
+
+app.use('/session',sessionRouter);
+app.use('/messages',messageRoutes);
 app.all('*',(req,res) => res.status(400).json({error: 'Wrong Url'}));
 
-const host = process.env.HOST || 'localhost';
-const port = Number(process.env.port || 3000);
-const listener = () => console.log(`Server is listening on http://${host}:${port}`);
-
 (async ()=>{
-    await init();
-    app.listen(port, host, listener);
+  await init();
+  app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+  });
 })();
