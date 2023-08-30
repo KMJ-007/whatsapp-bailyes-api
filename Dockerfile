@@ -1,14 +1,8 @@
 # Use the correct base image tag for Node
-FROM node:16-alpine
-
-# Create app directory
-RUN mkdir -p /app
-
-# Set the working directory to /app
-WORKDIR /app
+FROM node:17.2.0-alpine
 
 # Copy package.json and tsconfig files
-COPY package*.json tsconfig.json /app/
+COPY package*.json tsconfig.json .
 
 # Copy the source code
 COPY src ./src
