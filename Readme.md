@@ -29,3 +29,13 @@ if you have database running on the same machine and you are running container a
 please use `host.docker.internal` instead of `localhost`
 
 spend around 3 hr behind this
+
+# Database:
+- to create schema use following command after connecting the database:
+```
+npx prisma db push
+```
+# mac users:
+```
+docker pull kmj007/whatsapp-bailyes-microservice --platform linux/x86_64
+```

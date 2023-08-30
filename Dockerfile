@@ -1,5 +1,5 @@
 # Use the correct base image tag for Node
-FROM node:17.2.0-alpine
+FROM node:18.2.0-alpine
 
 # Copy package.json and tsconfig files
 COPY package*.json tsconfig.json .
