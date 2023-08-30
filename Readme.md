@@ -39,3 +39,7 @@ npx prisma db push
 ```
 docker pull kmj007/whatsapp-bailyes-microservice --platform linux/x86_64
 ```
+# run:
+```
+docker run --env-file .env --platform linux/x86_64 -p 3000:3000 kmj007/whatsapp-bailyes-microservice:karan-local
+```
