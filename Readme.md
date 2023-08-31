@@ -22,7 +22,7 @@
 - [x] dockerising whole service
 - [x] setting up the ci/cd workflow to push it to docker hub
 - [x] adding destroy, status, list methods and remaining methods
-- [] adding security token access so not everybody can access the microservice
+- [x] adding security token access so not everybody can access the microservice
 - [] creating frontend to access the methods
 
 ## Installation
