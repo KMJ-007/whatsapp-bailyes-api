@@ -3,7 +3,7 @@ import { Boom } from '@hapi/boom';
 import { Response } from "express";
 import { logger, prisma } from "./shared";
 import { useSession } from "./store/session";
-import * as qrcode from 'qrcode'
+import * as qrcode from 'qrcode';
 
 const retries = new Map<string, number>(); // Map to store the number of retries for each session
 const sessions = new Map<string, any>(); // Map to store the socket for each session
@@ -46,6 +46,25 @@ export const getSession = (sessionId: string) => {
   return sessions.get(sessionId);
 };
 
+export function getSessionStatus(session: any) {
+  const state = ['CONNECTING', 'CONNECTED', 'DISCONNECTING', 'DISCONNECTED'];
+  let status = state[(session.ws).socket.readyState];
+  status = session.user ? 'AUTHENTICATED' : status;
+  return status;
+}
+
+
+export function listSessions() {
+  return Array.from(sessions.entries()).map(([id, session]) => ({
+    id,
+    status: getSessionStatus(session),
+  }));
+};
+
+export async function deleteSession(sessionId: string) {
+  sessions.get(sessionId)?.destroy();
+};
+
 // pata lagau ki banda whatsapp par exist karta hai kya ?
 export const jidExist = async(session: any, jid: string, type: 'group' | 'number' = 'number') => {
   try {
@@ -71,6 +90,7 @@ type createSessionOptions = {
 
 export async function createSession(options:createSessionOptions) {
     const { sessionId, res, socketConfig } = options;
+    console.log("sessionId",sessionId)
     let connectionState: Partial<ConnectionState> = { connection: 'close' };
     const { state, saveCreds } = await useSession(sessionId);
     const configID = `${SESSION_CONFIG_ID}-${sessionId}`
@@ -107,6 +127,7 @@ export async function createSession(options:createSessionOptions) {
       if (!restartRequired) {
         logger.info({ attempts: retries.get(sessionId) ?? 1, sessionId }, 'Reconnecting...');
       }
+      console.log("restarting new sessions",restartRequired)
       setTimeout(() => createSession(options), restartRequired ? 0 : RECONNECT_INTERVAL);
     };
     
