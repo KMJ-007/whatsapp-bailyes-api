@@ -88,11 +88,13 @@ AUTH_TOKEN=supersecret
 ```
 
 ## Docker Image:
+pull the image 
 ```
-# pull the image 
 docker pull kmj007/whatsapp-bailyes-microservice
+```
 
-# run the image with correct env path and port number
+run the image with correct env path and port number
+```
 docker run --env-file .env  -p 3000:3000 -d kmj007/whatsapp-bailyes-microservice
 ```
 
