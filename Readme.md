@@ -18,11 +18,6 @@
 - [x] dockerising whole service
 - [x] setting up the ci/cd workflow to push it to docker hub
 
-
-## Running docker file
- docker run --env-file .env  -p 3000:3000 wa-bailyes-1
-
-
 # note:
 if you have database running on the same machine and you are running container also on the same machine([stackoverflow](https://stackoverflow.com/questions/28056522/access-host-database-from-a-docker-container)):
 
@@ -50,3 +45,16 @@ MAX_RECONNECT_RETRIES=5
 docker pull kmj007/whatsapp-bailyes-microservice
 docker run --env-file .env  -p 3000:3000 -d kmj007/whatsapp-bailyes-microservice
 ```
+
+
+
+# local development:
+- we are making images for multi platform so we are using buildx to do that
+## local build:
+```
+docker buildx build --platform linux/amd64,linux/arm64 -t kmj007/whatsapp-bailyes-microservice:local  .
+```
+## local run:
+```
+docker run --env-file .env  -p 3000:3000 kmj007/whatsapp-bailyes-microservice:local
+``
