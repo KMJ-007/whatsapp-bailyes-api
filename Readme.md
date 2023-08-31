@@ -15,8 +15,8 @@
 
 - [x] Creating basic routes and making it live
 - [x] storing the session of the existing user and using them
-- [ ] dockerising whole service
-- [ ] setting up the ci/cd workflow to push it to docker hub
+- [x] dockerising whole service
+- [x] setting up the ci/cd workflow to push it to docker hub
 
 
 ## Running docker file
@@ -35,11 +35,18 @@ spend around 3 hr behind this
 ```
 npx prisma db push
 ```
-# mac users:
+
+# env
+```env
+# they can be error, debug, warn, please pino for the log levels which you want
+LOG_LEVEL=warn 
+DATABASE_URL=postgres://postgres:12345@localhost:5432/wa_service
+RECONNECT_INTERVAL=5000
+MAX_RECONNECT_RETRIES=5
 ```
-docker pull kmj007/whatsapp-bailyes-microservice --platform linux/x86_64
+
+# Run:
 ```
-# run:
-```
-docker run --env-file .env --platform linux/x86_64 -p 3000:3000 kmj007/whatsapp-bailyes-microservice:karan-local
+docker pull kmj007/whatsapp-bailyes-microservice
+docker run --env-file .env  -p 3000:3000 -d kmj007/whatsapp-bailyes-microservice
 ```
