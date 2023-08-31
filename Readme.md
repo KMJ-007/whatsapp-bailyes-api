@@ -1,4 +1,4 @@
-# Multi device whatsapp microservice
+# whatsapp-bailyes-microservice
 
 - i am using [Baileys](https://github.com/WhiskeySockets/Baileys), which establishes direct web socket connection with the whatsapp servers, so i don't need to run whatsapp web in background and scarp things or use browser automation which is sometimes painful for me and servers's ram,
 
@@ -10,45 +10,92 @@
     - SSE is for server sent events, in case want real time updates
     - jid: The jid is the identifier used by whatsapp for each or group. It use to be cc+phone@s.whatsapp.net for users and cc+phone-timestamp@g.us for groups.
     Some times it differs due to countries with area code. So, check your jid while registering in the returned string and check other users jid with contact info function or you will be banned.
+## Requirements
 
-- todo:
+- **NodeJS** version **14.5.0** or higher
+- **Prisma** [supported databases](https://www.prisma.io/docs/reference/database-reference/supported-databases). Tested on MySQL and PostgreSQL
+
+## todo:
 
 - [x] Creating basic routes and making it live
 - [x] storing the session of the existing user and using them
 - [x] dockerising whole service
 - [x] setting up the ci/cd workflow to push it to docker hub
+- [] adding destroy, status, list methods and remaining methods
+- [] creating frontend to access the methods
+- [] adding security token access so not everybody can access the microservice
 
-# note:
-if you have database running on the same machine and you are running container also on the same machine([stackoverflow](https://stackoverflow.com/questions/28056522/access-host-database-from-a-docker-container)):
+## Installation
 
-please use `host.docker.internal` instead of `localhost`
+1. Download or clone this repo. If you want to skip the build step, you can use the [docker image](#docker-image)
+2. Enter to the project directory
+3. Install the dependencies
 
-spend around 3 hr behind this
-
-# Database:
-- to create schema use following command after connecting the database:
+```sh
+npm install
 ```
+
+4. Build the project using the `build` script
+
+```sh
+npm run build
+```
+
+5. Run the project using the `start` script
+
+```sh
+npm run start
+```
+
+## API Docs
+
+The API documentation is available online [here](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg). You can also import the **Postman Collection File** `(postman_collection.json)` into your Postman App alternatively
+
+## Setup
+
+1. Copy the `.env.example` file and rename it into `.env`, then update your [connection url](https://www.prisma.io/docs/reference/database-reference/connection-urls) in the `DATABASE_URL` field
+1. Update your [provider](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#fields) in the `prisma/schema.prisma` file if you're using database other than MySQL
+1. Run your [migration](https://www.prisma.io/docs/reference/api-reference/command-reference#prisma-migrate)
+
+```sh
+npx prisma migrate (dev|deploy)
+```
+
+or push the schema
+
+```sh
 npx prisma db push
 ```
 
-# env
+Don't forget to always re-run those whenever there's a change on the `prisma/schema.prisma` file
+
+## `.env` Configurations
 ```env
-# they can be error, debug, warn, please pino for the log levels which you want
+# Pino Logger Level
 LOG_LEVEL=warn 
+
+# Database Connection URL
 DATABASE_URL=postgres://postgres:12345@localhost:5432/wa_service
+
+# Reconnect Interval (in Milliseconds)
 RECONNECT_INTERVAL=5000
+
+# Maximum Reconnect Attempts
 MAX_RECONNECT_RETRIES=5
 ```
 
-# Run:
+## Docker Image:
 ```
+# pull the image 
 docker pull kmj007/whatsapp-bailyes-microservice
+
+# run the image with correct env path and port number
 docker run --env-file .env  -p 3000:3000 -d kmj007/whatsapp-bailyes-microservice
 ```
 
 
 
-# local development:
+## local development:
 - we are making images for multi platform so we are using buildx to do that
 ## local build:
 ```
@@ -57,4 +104,16 @@ docker buildx build --platform linux/amd64,linux/arm64 -t kmj007/whatsapp-bailye
 ## local run:
 ```
 docker run --env-file .env  -p 3000:3000 kmj007/whatsapp-bailyes-microservice:local
-``
+```
+
+## Note:
+if you have database running on the same machine and you are running container also on the same machine([stackoverflow](https://stackoverflow.com/questions/28056522/access-host-database-from-a-docker-container)):
+
+please use `host.docker.internal` instead of `localhost`
+
+spend around 3 hr behind this
+
+
+## Notice
+
+This project is intended for learning purpose only, don't use it for spamming or any activities that's prohibited by **WhatsApp**
