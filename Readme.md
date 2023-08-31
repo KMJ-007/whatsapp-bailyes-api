@@ -49,7 +49,7 @@ npm run start
 
 ## API Docs
 
-The API documentation is available online [here](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg). You can also import the **Postman Collection File** `(postman_collection.json)` into your Postman App alternatively
+The API documentation is available online [here](https://documenter.getpostman.com/view/19263917/2s9Y5Zw2Qp). You can also import the **Postman Collection File** `(postman_collection.json)` into your Postman App alternatively
 
 ## Setup
 

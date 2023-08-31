@@ -8,34 +8,11 @@
 	},
 	"item": [
 		{
-			"name": "Add Session",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"sessionId\": \"karan\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/session/add",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"session",
-						"add"
-					]
-				}
-			},
-			"response": [
+			"name": "Session",
+			"item": [
 				{
 					"name": "Add Session",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -58,84 +35,332 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "6487"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"1957-256CgAxl8de0b8ASiwPE7853rgE\""
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 29 Aug 2023 12:05:16 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "Add Session",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sessionId\": \"karan\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/session/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"session",
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "6487"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1957-256CgAxl8de0b8ASiwPE7853rgE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:05:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"qr\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAEUCAYAAADqcMl5AAAAAklEQVR4AewaftIAABKhSURBVO3BQY7YypLAQFLo+1+Z42WuChBUbb/5yAj7g7XWuuBhrbUueVhrrUse1lrrkoe11rrkYa21LnlYa61LHtZa65KHtda65GGttS55WGutSx7WWuuSh7XWuuRhrbUueVhrrUse1lrrkh8+UvmbKt5QOak4UZkqJpWpYlKZKiaVqeINlaniDZUvKt5QOak4Ufmi4guVk4oTlZOKSeVvqvjiYa21LnlYa61LHtZa65IfLqu4SeUNlZOKSWWqeKPiDZU3VE4qJpWpYlI5qfiXVG6qmFR+k8pUcVPFTSo3Pay11iUPa611ycNaa13ywy9TeaPiDZWTiknlC5WTiqniDZWpYlJ5Q2WqmFQmlTcqTlROKiaVk4pJ5Y2KN1ROKk5UfpPKGxW/6WGttS55WGutSx7WWuuSH/7HqXxR8YXKVHFScVIxqZxUTConFZPKVHGi8obKVDGpnFS8oTJVTConFZPKGxWTyv+Sh7XWuuRhrbUueVhrrUt++B9T8YbKGypTxRsqU8WkMlVMKm+oTBWTyqRyonJSMalMFZPKpHKiMlVMKlPFGxWTyqQyVUwqJypTxf+Sh7XWuuRhrbUueVhrrUt++GUV/2UVk8pUcaJyUjGpTCpvVEwqb6icVLyhMqlMFZPKScUbKlPFpDJVTConFScqU8WkMlXcVPFf8rDWWpc8rLXWJQ9rrXXJD5ep/JeoTBWTylQxqUwVk8pUMalMFZPKVDGpTBUnFZPKVDGpnKhMFScVk8pUMamcqEwVv6liUpkqblKZKk5U/sse1lrrkoe11rrkYa21Lvnho4r/soo3VN6omFSmijdUTlROVE5U3qh4Q2WqmFTeqJhU/qaKSWWqeEPljYr/Tx7WWuuSh7XWuuRhrbUu+eEjlaliUrmpYqqYVKaKk4p/qWJSeaNiUpkqJpUTlS8qblKZKr5QmSpOVKaKSWWquEnlporf9LDWWpc8rLXWJQ9rrXWJ/cEHKlPFpDJVTConFV+oTBWTyknFFypTxYnKVPGbVE4qJpWTijdUTireUDmpmFSmihOVqWJSmSreUDmpmFSmihOVqeKmh7XWuuRhrbUueVhrrUt++GUVb1RMKlPFb6qYVN6omComlZOKN1SmihOVLyq+UJkqTlSmipOKNyreqHhD5aRiqphUTireqJhUpoovHtZa65KHtda65GGttS6xP/iLVN6o+EJlqvhCZao4UZkqJpWTijdUTipOVE4qJpWp4kRlqphUpopJ5aTiROWNii9U3qiYVE4qvlCZKr54WGutSx7WWuuSh7XWuuSHy1TeqDhReaPiDZWpYlL5ouKk4kRlqnij4iaVqWJSeUPljYoTlaliqnhD5YuKE5WTiknlC5Wp4qaHtda65GGttS55WGutS374SOWk4kTlpGJSOVGZKiaVqWJSmSomlROVqeJE5aRiUjmpmFROKr5QmSpOVKaKSeVEZaqYKiaVNyqmihOVLyomlZOKN1T+poe11rrkYa21LnlYa61Lfris4ouKSeWk4kTljYpJZaqYVE5UflPFpDJVTCqTylTxhcpJxRsqJyonFW+oTBUnFScqX1RMKlPFGxWTylTxxcNaa13ysNZalzystdYlP1ymMlVMKm9UTConKm+oTBVTxRsVk8pJxRcqX1RMKicVJxUnKm9UvKFyojJVTBVvqEwVU8VvUpkqpopJZaq46WGttS55WGutSx7WWuuSHz6qmFQmlaniROWk4qRiUpkqJpVJZaqYVH6TyknFicobKlPFpHKiclIxVUwqJyonFVPFpDJVvKEyVbyhMlVMKlPFpDJVfFExqUwVXzystdYlD2utdcnDWmtd8sNlFZPKpPJGxaRyU8WkclIxqUwqU8WJylRxovJfUjGpnKi8UfGGyonKVHFSMamcqEwVJxWTyhsqJxWTylRx08Naa13ysNZalzystdYlP3ykMlV8UTGpTBUnKicqN1W8ofJFxaQyVXyhMlVMKlPFVDGpTBWTylQxqZxUnFR8oXJSMamcqEwVU8VNKlPFpDJVfPGw1lqXPKy11iUPa611if3BByonFZPKVDGpTBUnKlPFpDJVvKEyVZyonFS8ofJFxRsqJxUnKlPFpDJVTCpTxRcqU8WkMlX8JpUvKr5QOan44mGttS55WGutSx7WWusS+4MPVL6omFT+SyomlaliUpkqJpWpYlKZKk5UpooTlTcqTlRuqphUpooTlaniDZWbKiaVk4oTlaliUpkq/qaHtda65GGttS55WGutS+wPLlKZKk5UTipOVKaKSWWqmFSmikllqphUporfpDJVTCpTxaTyRsWkMlXcpDJVnKh8UTGpTBWTyhsVb6h8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\"\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"qr\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAEUCAYAAADqcMl5AAAAAklEQVR4AewaftIAABKhSURBVO3BQY7YypLAQFLo+1+Z42WuChBUbb/5yAj7g7XWuuBhrbUueVhrrUse1lrrkoe11rrkYa21LnlYa61LHtZa65KHtda65GGttS55WGutSx7WWuuSh7XWuuRhrbUueVhrrUse1lrrkh8+UvmbKt5QOak4UZkqJpWpYlKZKiaVqeINlaniDZUvKt5QOak4Ufmi4guVk4oTlZOKSeVvqvjiYa21LnlYa61LHtZa65IfLqu4SeUNlZOKSWWqeKPiDZU3VE4qJpWpYlI5qfiXVG6qmFR+k8pUcVPFTSo3Pay11iUPa611ycNaa13ywy9TeaPiDZWTiknlC5WTiqniDZWpYlJ5Q2WqmFQmlTcqTlROKiaVk4pJ5Y2KN1ROKk5UfpPKGxW/6WGttS55WGutSx7WWuuSH/7HqXxR8YXKVHFScVIxqZxUTConFZPKVHGi8obKVDGpnFS8oTJVTConFZPKGxWTyv+Sh7XWuuRhrbUueVhrrUt++B9T8YbKGypTxRsqU8WkMlVMKm+oTBWTyqRyonJSMalMFZPKpHKiMlVMKlPFGxWTyqQyVUwqJypTxf+Sh7XWuuRhrbUueVhrrUt++GUV/2UVk8pUcaJyUjGpTCpvVEwqb6icVLyhMqlMFZPKScUbKlPFpDJVTConFScqU8WkMlXcVPFf8rDWWpc8rLXWJQ9rrXXJD5ep/JeoTBWTylQxqUwVk8pUMalMFZPKVDGpTBUnFZPKVDGpnKhMFScVk8pUMamcqEwVv6liUpkqblKZKk5U/sse1lrrkoe11rrkYa21Lvnho4r/soo3VN6omFSmijdUTlROVE5U3qh4Q2WqmFTeqJhU/qaKSWWqeEPljYr/Tx7WWuuSh7XWuuRhrbUu+eEjlaliUrmpYqqYVKaKk4p/qWJSeaNiUpkqJpUTlS8qblKZKr5QmSpOVKaKSWWquEnlporf9LDWWpc8rLXWJQ9rrXWJ/cEHKlPFpDJVTConFV+oTBWTyknFFypTxYnKVPGbVE4qJpWTijdUTireUDmpmFSmihOVqWJSmSreUDmpmFSmihOVqeKmh7XWuuRhrbUueVhrrUt++GUVb1RMKlPFb6qYVN6omComlZOKN1SmihOVLyq+UJkqTlSmipOKNyreqHhD5aRiqphUTireqJhUpoovHtZa65KHtda65GGttS6xP/iLVN6o+EJlqvhCZao4UZkqJpWTijdUTipOVE4qJpWp4kRlqphUpopJ5aTiROWNii9U3qiYVE4qvlCZKr54WGutSx7WWuuSh7XWuuSHy1TeqDhReaPiDZWpYlL5ouKk4kRlqnij4iaVqWJSeUPljYoTlaliqnhD5YuKE5WTiknlC5Wp4qaHtda65GGttS55WGutS374SOWk4kTlpGJSOVGZKiaVqWJSmSomlROVqeJE5aRiUjmpmFROKr5QmSpOVKaKSeVEZaqYKiaVNyqmihOVLyomlZOKN1T+poe11rrkYa21LnlYa61Lfris4ouKSeWk4kTljYpJZaqYVE5UflPFpDJVTCqTylTxhcpJxRsqJyonFW+oTBUnFScqX1RMKlPFGxWTylTxxcNaa13ysNZalzystdYlP1ymMlVMKm9UTConKm+oTBVTxRsVk8pJxRcqX1RMKicVJxUnKm9UvKFyojJVTBVvqEwVU8VvUpkqpopJZaq46WGttS55WGutSx7WWuuSHz6qmFQmlaniROWk4qRiUpkqJpVJZaqYVH6TyknFicobKlPFpHKiclIxVUwqJyonFVPFpDJVvKEyVbyhMlVMKlPFpDJVfFExqUwVXzystdYlD2utdcnDWmtd8sNlFZPKpPJGxaRyU8WkclIxqUwqU8WJylRxovJfUjGpnKi8UfGGyonKVHFSMamcqEwVJxWTyhsqJxWTylRx08Naa13ysNZalzystdYlP3ykMlV8UTGpTBUnKicqN1W8ofJFxaQyVXyhMlVMKlPFVDGpTBWTylQxqZxUnFR8oXJSMamcqEwVU8VNKlPFpDJVfPGw1lqXPKy11iUPa611if3BByonFZPKVDGpTBUnKlPFpDJVvKEyVZyonFS8ofJFxRsqJxUnKlPFpDJVTCpTxRcqU8WkMlX8JpUvKr5QOan44mGttS55WGutSx7WWusS+4MPVL6omFT+SyomlaliUpkqJpWpYlKZKk5UpooTlTcqTlRuqphUpooTlaniDZWbKiaVk4oTlaliUpkq/qaHtda65GGttS55WGutS+wPLlKZKk5UTipOVKaKSWWqmFSmikllqphUporfpDJVTCpTxaTyRsWkMlXcpDJVnKh8UTGpTBWTyhsVb6h8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\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Send Message",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"jid\": \"917575806994@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
-				"url": {
-					"raw": "{{base_url}}/messages/send?sessionId=karan",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"messages",
-						"send"
-					],
-					"query": [
+				{
+					"name": "List Session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/session/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"session",
+								"list"
+							]
+						},
+						"description": "Return list of all sessions and its status"
+					},
+					"response": [
 						{
-							"key": "sessionId",
-							"value": "karan"
+							"name": "List Session",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/session/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"session",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-xj1Kfm1JMEwSPtMdc7jL1kQXrkA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Aug 2023 10:26:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"karan\",\n        \"status\": \"AUTHENTICATED\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Session Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/session/status?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"session",
+								"status"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						},
+						"description": "Determine a session status. The value is based from the websocket connection status, except that if the session has been successfully authenticated, it will return `AUTHENTHICATED`. Possible value is `AUTHENTICATED, CONNECTED, CONNECTING, DISCONNECTED, DISCONNECTING`"
+					},
+					"response": [
+						{
+							"name": "Session Status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/session/status?sessionId=karan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"session",
+										"status"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a-2rL+0idpkPObmbCfxXLGOUTLnRY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Aug 2023 10:39:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"AUTHENTICATED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Session",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/session/delete?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"session",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						},
+						"description": "Delete a session"
+					},
+					"response": [
+						{
+							"name": "Delete Session",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/session/delete?sessionId=karan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"session",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d-ILxigtiSa6WDHWPzEHKKbgV7iDQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Aug 2023 10:48:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Session deleted\"\n}"
 						}
 					]
 				}
-			},
-			"response": [
+			],
+			"description": "Session related all routes"
+		},
+		{
+			"name": "Message",
+			"item": [
 				{
 					"name": "Send Message",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jid\": \"917575806994@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+							"raw": "{\n    \"jid\": \"918200292979@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,43 +384,186 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "195"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 29 Aug 2023 12:14:11 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "Send Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"917575806994@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/messages/send?sessionId=karan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"917575806994@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"key\": {\n        \"remoteJid\": \"917575806994@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+					]
+				},
+				{
+					"name": "Send bulk Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello!\"\n        }\n    },\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello2!\"\n        }\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send/bulk?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send",
+								"bulk"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						},
+						"description": "Send a multiple messages. Accept an array of JSON object that has the same shape as the `Send Message` route. But it also accept an additional `delay` properties to add a delay for the specific message to send (in `milliseconds`), default to `1000`. Keep in mind that it won't be used for the message in first position"
+					},
+					"response": [
+						{
+							"name": "Send bulk Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello!\"\n        }\n    },\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello2!\"\n        }\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/messages/send/bulk?sessionId=karan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"messages",
+										"send",
+										"bulk"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "454"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c6-bB/WUrmNLLWW5g071X+wvYEKm88\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Aug 2023 11:03:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"results\": [\n        {\n            \"index\": 0,\n            \"result\": {\n                \"key\": {\n                    \"remoteJid\": \"919638051000@s.whatsapp.net\",\n                    \"fromMe\": true,\n                    \"id\": \"BAE59EC830079C93\"\n                },\n                \"message\": {\n                    \"extendedTextMessage\": {\n                        \"text\": \"Hello!\"\n                    }\n                },\n                \"messageTimestamp\": \"1693479824\",\n                \"status\": \"PENDING\"\n            }\n        },\n        {\n            \"index\": 1,\n            \"result\": {\n                \"key\": {\n                    \"remoteJid\": \"919638051000@s.whatsapp.net\",\n                    \"fromMe\": true,\n                    \"id\": \"BAE5692FD2E0F9AB\"\n                },\n                \"message\": {\n                    \"extendedTextMessage\": {\n                        \"text\": \"Hello2!\"\n                    }\n                },\n                \"messageTimestamp\": \"1693479831\",\n                \"status\": \"PENDING\"\n            }\n        }\n    ],\n    \"errors\": []\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "Message related all routes"
 		}
 	],
 	"event": [
