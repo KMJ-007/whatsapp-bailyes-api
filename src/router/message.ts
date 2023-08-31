@@ -19,4 +19,13 @@ messageRoutes.post(
     messageController.send
 );
 
+messageRoutes.post(
+    '/send/bulk',
+    body().isArray().notEmpty(),
+    query('sessionId').isString().notEmpty(),
+    requestValidator,
+    validateSession,
+    messageController.sendBulk
+)
+
 export default messageRoutes;
