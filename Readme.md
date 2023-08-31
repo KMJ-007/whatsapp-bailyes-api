@@ -82,6 +82,9 @@ RECONNECT_INTERVAL=5000
 
 # Maximum Reconnect Attempts
 MAX_RECONNECT_RETRIES=5
+
+# Auth token to validate the correct request
+AUTH_TOKEN=supersecret
 ```
 
 ## Docker Image:

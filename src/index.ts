@@ -4,12 +4,13 @@ import sessionRouter from './router/session';
 import { logger, prisma } from './shared';
 import messageRoutes from './router/message';
 import { init } from './wa';
+import { authMiddleware } from './middleware/auth-middleware';
 
 
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(authMiddleware)
 app.use('/session',sessionRouter);
 app.use('/messages',messageRoutes);
 app.all('*',(req,res) => res.status(400).json({error: 'Wrong Url'}));
