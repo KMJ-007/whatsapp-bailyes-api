@@ -98,7 +98,10 @@ run the image with correct env path and port number
 docker run --env-file .env  -p 3000:3000 -d kmj007/whatsapp-bailyes-microservice
 ```
 
-
+run with limited memory:
+```
+docker run --env-file .env  -p 3000:3000 -d --memory=300mb --restart=always kmj007/whatsapp-bailyes-microservice
+```
 
 ## local development:
 - we are making images for multi platform so we are using buildx to do that
