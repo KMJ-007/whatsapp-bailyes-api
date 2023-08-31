@@ -21,9 +21,9 @@
 - [x] storing the session of the existing user and using them
 - [x] dockerising whole service
 - [x] setting up the ci/cd workflow to push it to docker hub
-- [] adding destroy, status, list methods and remaining methods
-- [] creating frontend to access the methods
+- [x] adding destroy, status, list methods and remaining methods
 - [] adding security token access so not everybody can access the microservice
+- [] creating frontend to access the methods
 
 ## Installation
 
