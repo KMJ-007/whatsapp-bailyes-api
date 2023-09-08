@@ -69,6 +69,22 @@ npx prisma db push
 
 Don't forget to always re-run those whenever there's a change on the `prisma/schema.prisma` file
 
+if you don't want to do manually then you can run the following sql query in the  database
+```sql
+CREATE TABLE "Session" (
+    "pkId" SERIAL NOT NULL,
+    "sessionId" VARCHAR(128) NOT NULL,
+    "id" VARCHAR(255) NOT NULL,
+    "data" TEXT NOT NULL,
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("pkId")
+);
+
+CREATE INDEX "Session_sessionId_idx" ON "Session"("sessionId");
+
+```
+
+
 ## `.env` Configurations
 ```env
 # Pino Logger Level
