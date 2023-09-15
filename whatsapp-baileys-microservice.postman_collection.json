@@ -4,7 +4,7 @@
 		"name": "whatsapp-baileys-microservice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19263917",
-		"_collection_link": "https://www.postman.com/flight-physicist-41853038/workspace/whatsapp-baileys-microservice/collection/19263917-e911f0fe-e11b-4608-9f89-85176f73a574?action=share&creator=19263917&source=collection_link"
+		"_collection_link": "https://www.postman.com/flight-physicist-41853038/workspace/whatsapp-baileys-microservice/collection/19263917-e911f0fe-e11b-4608-9f89-85176f73a574?action=share&source=collection_link&creator=19263917"
 	},
 	"item": [
 		{
@@ -14,7 +14,13 @@
 					"name": "Add Session",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"sessionId\": \"karan\"\n}",
@@ -51,12 +57,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/session/add",
-									"protocol": "http",
+									"raw": "{{base_url}}/session/add",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
 										"session",
 										"add"
@@ -105,7 +109,13 @@
 					"name": "List Session",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{base_url}}/session/list",
 							"host": [
@@ -125,12 +135,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/session/list",
-									"protocol": "http",
+									"raw": "{{base_url}}/session/list",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
 										"session",
 										"list"
@@ -179,7 +187,13 @@
 					"name": "Session Status",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{base_url}}/session/status?sessionId=karan",
 							"host": [
@@ -205,12 +219,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/session/status?sessionId=karan",
-									"protocol": "http",
+									"raw": "{{base_url}}/session/status?sessionId=karan",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
 										"session",
 										"status"
@@ -265,7 +277,13 @@
 					"name": "Delete Session",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{base_url}}/session/delete?sessionId=karan",
 							"host": [
@@ -291,12 +309,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/session/delete?sessionId=karan",
-									"protocol": "http",
+									"raw": "{{base_url}}/session/delete?sessionId=karan",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
 										"session",
 										"delete"
@@ -357,10 +373,16 @@
 					"name": "Send Message",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jid\": \"918200292979@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"hello hello\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -386,13 +408,13 @@
 					},
 					"response": [
 						{
-							"name": "Send Message",
+							"name": "Send Message example",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"jid\": \"917575806994@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"raw": "{\n    \"jid\": \"9175xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -400,12 +422,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/messages/send?sessionId=karan",
-									"protocol": "http",
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
 										"messages",
 										"send"
@@ -452,7 +472,770 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"key\": {\n        \"remoteJid\": \"917575806994@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9175xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Image Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"image\": {\n            \"url\": \"https://example.com/image.jpeg\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Message example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"9175xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9175xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send audio Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"audio\": {\n             \"url\": \"./Media/audio.mp3\" \n             }, \n        \"mimetype\": \"audio/mp4\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Message example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"9175xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9175xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Video Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"video\": \"./Media/ma_gif.mp4\", \n        \"caption\": \"hello!\",\n        \"gifPlayback\": true\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Message example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"9175xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9175xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send file(pdf any)Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"fileName\": \"somefile.pdf\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Message example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"9175xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9175xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Template Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Hi it's a template message\",\n        \"footer\": \"Hello World\",\n        \"templateButtons\": [\n    {\"index\": 1, \"urlButton\": {\"displayText\": \"⭐ Star Baileys on GitHub!', url: 'https://github.com/adiwajshing/Baileys\"}},\n    {\"index\": 2, \"callButton\": {\"displayText\": \"Call me!\", \"phoneNumber\": \"+1 (234) 5678-901\"}},\n    {\"index\": 3, \"quickReplyButton\": {\"displayText\": \"This is a reply, just like normal buttons!\", \"id\": \"id-like-buttons-message\"}}\n]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						},
+						"description": "<img src=\"https://content.pstmn.io/216a984b-99a2-4e4d-8cb3-80175fe43b87/aW1hZ2UucG5n\" alt=\"\" height=\"392\" width=\"946\">"
+					},
+					"response": [
+						{
+							"name": "Send Template Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "auth_token",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Hi it's a template message\",\n        \"footer\": \"Hello World\",\n        \"templateButtons\": [\n    {\"index\": 1, \"urlButton\": {\"displayText\": \"⭐ Star Baileys on GitHub!', url: 'https://github.com/adiwajshing/Baileys\"}},\n    {\"index\": 2, \"callButton\": {\"displayText\": \"Call me!\", \"phoneNumber\": \"+1 (234) 5678-901\"}},\n    {\"index\": 3, \"quickReplyButton\": {\"displayText\": \"This is a reply, just like normal buttons!\", \"id\": \"id-like-buttons-message\"}}\n]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "646"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"286-bK7TwCGrl0v2pHWjG60S6K0hI6k\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Sep 2023 21:24:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9182xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5AAF9AB0D1403\"\n    },\n    \"message\": {\n        \"templateMessage\": {\n            \"fourRowTemplate\": {},\n            \"hydratedTemplate\": {\n                \"hydratedContentText\": \"Hi it's a template message\",\n                \"hydratedFooterText\": \"Hello World\",\n                \"hydratedButtons\": [\n                    {\n                        \"urlButton\": {\n                            \"displayText\": \"⭐ Star Baileys on GitHub!', url: 'https://github.com/adiwajshing/Baileys\"\n                        },\n                        \"index\": 1\n                    },\n                    {\n                        \"callButton\": {\n                            \"displayText\": \"Call me!\",\n                            \"phoneNumber\": \"+1 (234) 5678-901\"\n                        },\n                        \"index\": 2\n                    },\n                    {\n                        \"quickReplyButton\": {\n                            \"displayText\": \"This is a reply, just like normal buttons!\",\n                            \"id\": \"id-like-buttons-message\"\n                        },\n                        \"index\": 3\n                    }\n                ]\n            }\n        }\n    },\n    \"messageTimestamp\": \"1694813055\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Contact Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"contacts\": { \n            \"displayName\": \"Karan\", \n            \"contacts\": [{ \n                \"vcard\" : \n                }] \n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						},
+						"description": "example how to do this:  \n  \nconst vcard = 'BEGIN:VCARD\\\\n' // metadata of the contact card\n\n\\+ 'VERSION:3.0\\\\n'  \n\n\\+ 'FN:Jeff Singh\\\\n' // full name  \n\n\\+ 'ORG:Ashoka Uni;\\\\n' // the organization of the contact  \n\n\\+ 'TEL;type=CELL;type=VOICE;waid=911234567890:+91 12345 67890\\\\n' // WhatsApp ID + phone number  \n\n\\+ 'END:VCARD'"
+					},
+					"response": [
+						{
+							"name": "Send Message example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"9175xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"text\": \"Kem cho ?\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-33sYwkaRT/4YonXLYWrkDBtkdkE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Aug 2023 12:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9175xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE5918D2AACE02E\"\n    },\n    \"message\": {\n        \"extendedTextMessage\": {\n            \"text\": \"Kem cho ?\"\n        }\n    },\n    \"messageTimestamp\": \"1693311251\",\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Location Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jid\": \"9182xxxxxxxx@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"location\": { \"degreesLatitude\": 24.121231, \"degreesLongitude\": 55.1121221 }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/messages/send?sessionId=karan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"messages",
+								"send"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "karan"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Location Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "auth_token",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jid\": \"918200292979@s.whatsapp.net\", // for group use:@g.us\n    \"type\": \"number\", //possible values are number or group\n    \"message\": {\n        \"location\": { \"degreesLatitude\": 24.121231, \"degreesLongitude\": 55.1121221 }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/messages/send?sessionId=karan",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"messages",
+										"send"
+									],
+									"query": [
+										{
+											"key": "sessionId",
+											"value": "karan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "230"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e6-IJRhmPCShMc2AKXm4A4+/0+XxtI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Sep 2023 21:10:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"key\": {\n        \"remoteJid\": \"9182xxxxxxxx@s.whatsapp.net\",\n        \"fromMe\": true,\n        \"id\": \"BAE58445D2A855E7\"\n    },\n    \"message\": {\n        \"locationMessage\": {\n            \"degreesLatitude\": 24.121231,\n            \"degreesLongitude\": 55.1121221\n        }\n    },\n    \"messageTimestamp\": \"1694812259\",\n    \"status\": \"PENDING\"\n}"
 						}
 					]
 				},
@@ -460,10 +1243,16 @@
 					"name": "Send bulk Message",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello!\"\n        }\n    },\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello2!\"\n        }\n    }\n]",
+							"raw": "[\n    {\n        \"jid\": \"9196xxxxxxxx@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello!\"\n        }\n    },\n    {\n        \"jid\": \"9196xxxxxxxx@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello2!\"\n        }\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -497,7 +1286,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello!\"\n        }\n    },\n    {\n        \"jid\": \"919638051000@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello2!\"\n        }\n    }\n]",
+									"raw": "[\n    {\n        \"jid\": \"9196xxxxxxxx@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello!\"\n        }\n    },\n    {\n        \"jid\": \"9196xxxxxxxx@s.whatsapp.net\",\n        \"type\": \"number\",\n        \"delay\": 5000,\n        \"message\": {\n            \"text\": \"Hello2!\"\n        }\n    }\n]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -505,12 +1294,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/messages/send/bulk?sessionId=karan",
-									"protocol": "http",
+									"raw": "{{base_url}}/messages/send/bulk?sessionId=karan",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "3000",
 									"path": [
 										"messages",
 										"send",
@@ -558,7 +1345,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"results\": [\n        {\n            \"index\": 0,\n            \"result\": {\n                \"key\": {\n                    \"remoteJid\": \"919638051000@s.whatsapp.net\",\n                    \"fromMe\": true,\n                    \"id\": \"BAE59EC830079C93\"\n                },\n                \"message\": {\n                    \"extendedTextMessage\": {\n                        \"text\": \"Hello!\"\n                    }\n                },\n                \"messageTimestamp\": \"1693479824\",\n                \"status\": \"PENDING\"\n            }\n        },\n        {\n            \"index\": 1,\n            \"result\": {\n                \"key\": {\n                    \"remoteJid\": \"919638051000@s.whatsapp.net\",\n                    \"fromMe\": true,\n                    \"id\": \"BAE5692FD2E0F9AB\"\n                },\n                \"message\": {\n                    \"extendedTextMessage\": {\n                        \"text\": \"Hello2!\"\n                    }\n                },\n                \"messageTimestamp\": \"1693479831\",\n                \"status\": \"PENDING\"\n            }\n        }\n    ],\n    \"errors\": []\n}"
+							"body": "{\n    \"results\": [\n        {\n            \"index\": 0,\n            \"result\": {\n                \"key\": {\n                    \"remoteJid\": \"9196xxxxxxxx@s.whatsapp.net\",\n                    \"fromMe\": true,\n                    \"id\": \"BAE59EC830079C93\"\n                },\n                \"message\": {\n                    \"extendedTextMessage\": {\n                        \"text\": \"Hello!\"\n                    }\n                },\n                \"messageTimestamp\": \"1693479824\",\n                \"status\": \"PENDING\"\n            }\n        },\n        {\n            \"index\": 1,\n            \"result\": {\n                \"key\": {\n                    \"remoteJid\": \"9196xxxxxxxx@s.whatsapp.net\",\n                    \"fromMe\": true,\n                    \"id\": \"BAE5692FD2E0F9AB\"\n                },\n                \"message\": {\n                    \"extendedTextMessage\": {\n                        \"text\": \"Hello2!\"\n                    }\n                },\n                \"messageTimestamp\": \"1693479831\",\n                \"status\": \"PENDING\"\n            }\n        }\n    ],\n    \"errors\": []\n}"
 						}
 					]
 				}
@@ -590,6 +1377,11 @@
 		{
 			"key": "base_url",
 			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "hello1234",
 			"type": "string"
 		}
 	]
