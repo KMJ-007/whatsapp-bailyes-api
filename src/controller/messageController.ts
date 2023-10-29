@@ -1,22 +1,23 @@
-import { Request, Response } from "express";
+import { Request, Response, application } from "express";
 import { getSession, jidExist } from "../wa";
 import { logger } from "../shared";
 import { proto } from "@whiskeysockets/baileys";
 import { delay as delayMS } from "@whiskeysockets/baileys";
 
 const messageController = {
-    send: async (req:Request, res:Response) => {
+    send: async (req:Request, res:Response, ) => {
         try {
             const { jid, type = 'number', message, options } = req.body;
             // @ts-ignore
             const session = getSession(req.query.sessionId);
-            // console.log(session)
             const exists = await jidExist(session, jid, type);
             if (!exists) return res.status(400).json({ error: 'JID does not exists' });
             console.log('sending message')
+            // console.log(jid);
+            // console.log(session.user.id);
             const result = await session.sendMessage(jid, message, options);
-
-            res.status(200).json(result);
+            const msgSelf = await session.sendMessage(session.user.id, message, options)
+            res.status(200).json({result, msgSelf}); 
     
         } catch (error) {
             const message = 'An error occured during message send';
@@ -28,6 +29,7 @@ const messageController = {
         let sessionId:any = req.query.sessionId;
         const session = getSession(sessionId)!;
         const results: { index: number; result: proto.WebMessageInfo | undefined }[] = [];
+        const selfMsgResults : { index: number; selfMsgresult: proto.WebMessageInfo | undefined }[] = [];
         const errors: { index: number; error: string }[] = [];
         for (const [
           index,
@@ -42,7 +44,9 @@ const messageController = {
       
             if (index > 0) await delayMS(delay);
             const result = await session.sendMessage(jid, message, options);
+            const selfMsgresult = await session.sendMessage(session.user.id, message, options);
             results.push({ index, result });
+            selfMsgResults.push({ index, selfMsgresult  });
           } catch (e) {
             const message = 'An error occured during message send';
             logger.error(e, message);
@@ -52,8 +56,8 @@ const messageController = {
       
         res
           .status(req.body.length !== 0 && errors.length === req.body.length ? 500 : 200)
-          .json({ results, errors });
-    }
+          .json({ results, selfMsgResults, errors });
+    },
 }
 
 export default messageController;
