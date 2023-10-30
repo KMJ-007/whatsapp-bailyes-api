@@ -8,15 +8,15 @@ const messageController = {
     send: async (req:Request, res:Response, ) => {
         try {
             const { jid, type = 'number', message, options } = req.body;
+            const newMsg = { text : `Following msg was sent to the ${jid.slice(2,12)} \n ${message.text}` } 
             // @ts-ignore
             const session = getSession(req.query.sessionId);
             const exists = await jidExist(session, jid, type);
             if (!exists) return res.status(400).json({ error: 'JID does not exists' });
-            console.log('sending message')
-            // console.log(jid);
-            // console.log(session.user.id);
+            console.log('sending message') 
+            // console.log();
             const result = await session.sendMessage(jid, message, options);
-            const msgSelf = await session.sendMessage(session.user.id, message, options)
+            const msgSelf = await session.sendMessage(session.user.id, newMsg, options)
             res.status(200).json({result, msgSelf}); 
     
         } catch (error) {
@@ -43,8 +43,9 @@ const messageController = {
             }
       
             if (index > 0) await delayMS(delay);
+            const newMsg = { text : `  \n   Following msg was sent to the ${jid.slice(2,12)}   \n  \n  ${message.text}` } 
             const result = await session.sendMessage(jid, message, options);
-            const selfMsgresult = await session.sendMessage(session.user.id, message, options);
+            const selfMsgresult = await session.sendMessage(session.user.id, newMsg, options);
             results.push({ index, result });
             selfMsgResults.push({ index, selfMsgresult  });
           } catch (e) {
