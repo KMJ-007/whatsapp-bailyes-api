@@ -1,4 +1,4 @@
-import makeWASocket, { AnyMessageContent, AuthenticationCreds, ConnectionState, DisconnectReason, SocketConfig, delay, fetchLatestBaileysVersion, initAuthCreds, makeCacheableSignalKeyStore, useMultiFileAuthState } from "@whiskeysockets/baileys";
+import makeWASocket, { ConnectionState, DisconnectReason, SocketConfig, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from "@whiskeysockets/baileys";
 import { Boom } from '@hapi/boom';
 import { Response } from "express";
 import { logger, prisma } from "./shared";
