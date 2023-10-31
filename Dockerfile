@@ -2,13 +2,14 @@
 FROM node:18.2.0-alpine
 
 # Copy package.json and tsconfig files
-COPY package*.json tsconfig.json .
+COPY yarn.lock package.json tsconfig.json ./
 
 # Copy the source code
 COPY src ./src
 
 # Install dependencies using Yarn
-RUN npm install
+RUN apk add --no-cache git openssh
+RUN yarn install
 
 # Build the application
 RUN npm run build
