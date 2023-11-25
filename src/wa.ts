@@ -185,23 +185,12 @@ export async function createSession(options:createSessionOptions) {
         }
 
         // credentials updated -- save them
-        if(events['creds.update']) {
-          await saveCreds()
-        }
-        // sample reply msg to see if it is working or not
-        // if(events['messages.upsert']) {
-        //   const upsert = events['messages.upsert']
-        //   console.log('recv messages ', JSON.stringify(upsert, undefined, 2))
-  
-        //   if(upsert.type === 'notify') {
-        //     for(const msg of upsert.messages) {
-        //         console.log('replying to', msg.key.remoteJid)
-        //         await sock!.readMessages([msg.key])
-        //         await sendMessageWTyping({ text: 'Hello there!' }, msg.key.remoteJid!)
-        //     }
-        //   }
+        // if(events['creds.update']) {
+        //   await saveCreds()
         // }
+        // sample reply msg to see if it is working or not
         
+         
       })
       
   return sock;
