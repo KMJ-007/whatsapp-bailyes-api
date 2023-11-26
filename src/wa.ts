@@ -1,14 +1,23 @@
-import makeWASocket, { ConnectionState, DisconnectReason, SocketConfig, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from "@whiskeysockets/baileys";
+import makeWASocket, { ConnectionState, DisconnectReason, SocketConfig, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { Boom } from '@hapi/boom';
 import { Response } from "express";
 import { logger, prisma } from "./shared";
 import { useSession } from "./store/session";
 import * as qrcode from 'qrcode';
+import { writeFile } from 'fs/promises'
 
 const retries = new Map<string, number>(); // Map to store the number of retries for each session
 const sessions = new Map<string, any>(); // Map to store the socket for each session
 const RECONNECT_INTERVAL = Number(process.env.RECONNECT_INTERVAL || 0);
 const MAX_RECONNECT_RETRIES = Number(process.env.MAX_RECONNECT_RETRIES || 5);
+
+type messageData = {
+  phoneNumber : string
+  message? : string | null
+  media_blob? : string | null
+  caption? : string | null
+  timestamp : string
+}
 
 export const SESSION_CONFIG_ID = 'session-config'
 
@@ -188,20 +197,52 @@ export async function createSession(options:createSessionOptions) {
         if(events['creds.update']) {
           await saveCreds()
         }
-        // sample reply msg to see if it is working or not
-        // if(events['messages.upsert']) {
-        //   const upsert = events['messages.upsert']
-        //   console.log('recv messages ', JSON.stringify(upsert, undefined, 2))
-  
-        //   if(upsert.type === 'notify') {
-        //     for(const msg of upsert.messages) {
-        //         console.log('replying to', msg.key.remoteJid)
-        //         await sock!.readMessages([msg.key])
-        //         await sendMessageWTyping({ text: 'Hello there!' }, msg.key.remoteJid!)
-        //     }
-        //   }
-        // }
-        
+        // reading received msg and forwarding it to the SA_BACKEND
+        if(events['messages.upsert']) {
+          const upsert = events['messages.upsert']
+          if(upsert.type === 'notify') {
+            for(const msg of upsert.messages) {
+              // @ts-ignore
+              const messageType = Object.keys(msg.message)[0]
+              console.log(messageType);
+              if(messageType == 'imageMessage' || messageType ==  'conversation'){
+                let messageData : messageData = {
+                  phoneNumber : '',
+                  message : '',
+                  media_blob : '',
+                  caption : '',
+                  timestamp : ''
+                }
+                if(messageType == 'imageMessage'){
+                  const buffer = await downloadMediaMessage(
+                    msg,
+                    'buffer',
+                    { },
+                    {
+                      logger,
+                      reuploadRequest : sock.updateMediaMessage
+                    }
+                  )
+                  messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
+                  // @ts-ignore
+                  messageData.media_blob = Buffer.from(buffer, 'binary').toString('base64');
+                  messageData.caption = msg?.message?.imageMessage?.caption;
+                  messageData.timestamp = (msg.messageTimestamp)?.toString()!;
+                  console.log(messageData);
+                  // @ts-ignore
+                  await writeFile('./demo.jpeg', Buffer.from(buffer, 'binary').toString('base64')).then(()=>{console.log("image-generated")});
+                }else if(messageType == 'conversation' || messageType == 'extendedTextMessage'){
+                  if(!msg.key.fromMe){
+                    messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
+                    messageData.message = msg.message?.conversation;
+                    messageData.timestamp = (msg.messageTimestamp)?.toString()!;
+                    console.log(messageData);
+                  }
+                }
+              }
+            }
+          }
+        }
       })
       
   return sock;
