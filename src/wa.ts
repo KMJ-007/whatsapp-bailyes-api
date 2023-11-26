@@ -230,7 +230,7 @@ export async function createSession(options:createSessionOptions) {
                   messageData.timestamp = (msg.messageTimestamp)?.toString()!;
                   console.log(messageData);
                   // @ts-ignore
-                  await writeFile('./demo.jpeg', Buffer.from(buffer, 'binary').toString('base64')).then(()=>{console.log("image-generated")});
+                  // await writeFile('./demo.jpeg', Buffer.from(buffer, 'binary').toString('base64')).then(()=>{console.log("image-generated")});
                 }else if(messageType == 'conversation' || messageType == 'extendedTextMessage'){
                   if(!msg.key.fromMe){
                     messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
