@@ -5,19 +5,13 @@ import { logger, prisma } from "./shared";
 import { useSession } from "./store/session";
 import * as qrcode from 'qrcode';
 import { writeFile } from 'fs/promises'
+import { sendDataSAbackend } from "./utils/sendDataSAbackend";
+import { messageDataType } from "./types";
 
 const retries = new Map<string, number>(); // Map to store the number of retries for each session
 const sessions = new Map<string, any>(); // Map to store the socket for each session
 const RECONNECT_INTERVAL = Number(process.env.RECONNECT_INTERVAL || 0);
 const MAX_RECONNECT_RETRIES = Number(process.env.MAX_RECONNECT_RETRIES || 5);
-
-type messageData = {
-  phoneNumber : string
-  message? : string | null
-  media_blob? : string | null
-  caption? : string | null
-  timestamp : string
-}
 
 export const SESSION_CONFIG_ID = 'session-config'
 
@@ -202,42 +196,43 @@ export async function createSession(options:createSessionOptions) {
           const upsert = events['messages.upsert']
           if(upsert.type === 'notify') {
             for(const msg of upsert.messages) {
-              // @ts-ignore
-              const messageType = Object.keys(msg.message)[0]
-              console.log(messageType);
-              if(messageType == 'imageMessage' || messageType ==  'conversation'){
-                let messageData : messageData = {
-                  phoneNumber : '',
-                  message : '',
-                  media_blob : '',
-                  caption : '',
-                  timestamp : ''
-                }
-                if(messageType == 'imageMessage'){
-                  const buffer = await downloadMediaMessage(
-                    msg,
-                    'buffer',
-                    { },
-                    {
-                      logger,
-                      reuploadRequest : sock.updateMediaMessage
-                    }
-                  )
-                  messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
-                  // @ts-ignore
-                  messageData.media_blob = Buffer.from(buffer, 'binary').toString('base64');
-                  messageData.caption = msg?.message?.imageMessage?.caption;
-                  messageData.timestamp = (msg.messageTimestamp)?.toString()!;
-                  console.log(messageData);
-                  // @ts-ignore
-                  // await writeFile('./demo.jpeg', Buffer.from(buffer, 'binary').toString('base64')).then(()=>{console.log("image-generated")});
-                }else if(messageType == 'conversation' || messageType == 'extendedTextMessage'){
-                  if(!msg.key.fromMe){
+              if(!msg.key.fromMe){
+                // @ts-ignore
+                const messageType = Object.keys(msg.message)[0]
+                console.log(messageType);
+                if(messageType == 'imageMessage' || messageType ==  'conversation'){
+                  let messageData : messageDataType = {
+                    phoneNumber : '',
+                    message : '',
+                    media_blob : '',
+                    caption : '',
+                    timestamp : ''
+                  }
+                  if(messageType == 'imageMessage'){
+                    const buffer = await downloadMediaMessage(
+                      msg,
+                      'buffer',
+                      { },
+                      {
+                        logger,
+                        reuploadRequest : sock.updateMediaMessage
+                      }
+                      )
+                      messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
+                      // @ts-ignore
+                      messageData.media_blob = Buffer.from(buffer, 'binary').toString('base64');
+                      messageData.caption = msg?.message?.imageMessage?.caption;
+                      messageData.timestamp = (msg.messageTimestamp)?.toString()!;
+                      sendDataSAbackend(messageData);
+                      // @ts-ignore
+                      // await writeFile('./demo.jpeg', Buffer.from(buffer, 'binary').toString('base64')).then(()=>{console.log("image-generated")});
+                  }
+                  else if(messageType == 'conversation' || messageType == 'extendedTextMessage'){
                     messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
                     messageData.message = msg.message?.conversation;
                     messageData.timestamp = (msg.messageTimestamp)?.toString()!;
-                    console.log(messageData);
-                  }
+                    sendDataSAbackend(messageData);
+                   }
                 }
               }
             }

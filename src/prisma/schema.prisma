@@ -20,3 +20,9 @@ model Session {
   @@unique([sessionId, id], map: "unique_id_per_session_id")
   @@index([sessionId])
 }
+
+model Proxy {
+  pkId          Int     @id @default(autoincrement())
+  productName   String  @db.VarChar(128)
+  api_endpoint  String  @db.VarChar(128)
+}
