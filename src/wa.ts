@@ -1,4 +1,4 @@
-import makeWASocket, { ConnectionState, DisconnectReason, SocketConfig, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, downloadMediaMessage } from "@whiskeysockets/baileys";
+import makeWASocket, { ConnectionState, DisconnectReason, SocketConfig, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, downloadMediaMessage, mediaMessageSHA256B64 } from "@whiskeysockets/baileys";
 import { Boom } from '@hapi/boom';
 import { Response } from "express";
 import { logger, prisma } from "./shared";
@@ -224,6 +224,7 @@ export async function createSession(options:createSessionOptions) {
                       messageData.caption = msg?.message?.imageMessage?.caption;
                       messageData.timestamp = (msg.messageTimestamp)?.toString()!;
                       sendDataSAbackend(messageData);
+                      console.log(messageData);
                       // @ts-ignore
                       // await writeFile('./demo.jpeg', Buffer.from(buffer, 'binary').toString('base64')).then(()=>{console.log("image-generated")});
                   }
@@ -231,6 +232,7 @@ export async function createSession(options:createSessionOptions) {
                     messageData.phoneNumber = msg.key.remoteJid!.slice(2,12);
                     messageData.message = msg.message?.conversation;
                     messageData.timestamp = (msg.messageTimestamp)?.toString()!;
+                    console.log(messageData);
                     sendDataSAbackend(messageData);
                    }
                 }
